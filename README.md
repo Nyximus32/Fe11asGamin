@@ -1,2 +1,8 @@
 # Fe11asGamin
-https://www.google.com/search?q=final+fantasy+5&tbm=isch&ved=2ahUKEwi7iq7Cw_OBAxWBhqQKHVSrADMQ2-cCegQIABAA&oq=final+fantasy+5&gs_lcp=CgNpbWcQAzIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQyBQgAEIAEMgUIABCABDIFCAAQgAQ6BAgjECc6BwgAEIoFEENQrAhYzxJglRZoAXAAeACAATyIAeQBkgEBNJgBAKABAaoBC2d3cy13aXotaW1nwAEB&sclient=img&ei=eXspZfvpAYGNkgXU1oKYAw&bih=924&biw=1912&hl=en#imgrc=beK5y2H36tNeDM
+
+## Tasks
+In-Combat Gameplay
+Out-Combat Gameplay
+Design (Map & Sprites)
+Enemies
+Characters (Main & Side)
