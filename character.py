@@ -31,6 +31,9 @@ class Character:
     def get_rect(self):
         return pygame.Rect(self.player_pos.x, self.player_pos.y, 128, 128)
 
+    def get_stats(self):
+        return self.stats
+
     def check_movement(self):
         keys = pygame.key.get_pressed()
         if pygame.key.get_pressed():

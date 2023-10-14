@@ -16,6 +16,9 @@ class Level:
     def add_enemies(self, enemy):
         self.enemies.append(enemy)
 
+    def remove_enemies(self, enemy):
+        self.enemies.remove(enemy)
+
     def draw_map(self):
         # Draw the Map
         self.screen.blit(self.map_image, (0, 0))

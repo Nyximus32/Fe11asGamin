@@ -62,6 +62,14 @@ class EnemyStats:
     def attack(self, target):
         target.take_damage(self.damage)
 
+    def draw_hp_bar(self, x, y, hp, max_hp, screen):
+        hp_bar_width = 100
+        hp_bar_height = 20
+
+        pygame.draw.rect(screen, (255, 0, 0), (x, y, hp_bar_width, hp_bar_height))  # Draw the red background
+        current_hp_width = (hp / max_hp) * hp_bar_width
+        pygame.draw.rect(screen, (0, 255, 0), (x, y, current_hp_width, hp_bar_height))  # Draw the green HP bar
+
     def __str__(self):
         return "{} has {} hit points remaining.".format(self.name, self.hp)
 
