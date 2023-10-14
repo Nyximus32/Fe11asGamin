@@ -15,30 +15,26 @@ in_battle = False
 dmg_taken = True
 
 # Map and Level Class
-Map = level.Level("Maps/Hall.png", screen)
-BattleMap = level.Level("Maps/JadynHands.png", screen)
+Hall = level.Level("Maps/Hall.png", "Hall",screen)
+Lounge = level.Level("Maps/school_level_one.png", "Lounge", screen)
+BattleMap = level.Level("Maps/JadynHands.png", "BattleMap",screen)
+Map = Hall
 
 # Character Classes
-# Jadyn = character.Character(
-#     "Jadyn/Jadyn_idle.png", "Jadyn/Jadyn_walk.png", pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2), 3,
-#     screen, dt, character.CharacterStats(name="Jadyn", hp=100, damage=20,
-#                                          role="fighter")
-# )
 Jadyn = character.Jadyn(pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2), 3, screen, dt)
-# Teo = character.Character(
-#     "Teo/Teo_idle.png", "Teo/Teo_walk.png", (600, 450),
-#     2, screen, dt, character.CharacterStats(name="Teo", hp=100, damage=20,
-#                                             role="fighter")
-# )
 Teo = character.Teo(pygame.Vector2(600, 450), 2, screen, dt)
+Rob = character.Rob(pygame.Vector2(50, 270), 4, screen, dt)
+Jaafar = character.Jaafar(pygame.Vector2(50, 425), 4, screen, dt)
 
 dragon1 = enemy.Dragon(700, 0)
 dragon2 = enemy.Dragon(100, 100)
 dragon3 = enemy.Dragon(360, 70)
 dragons = [dragon2, dragon3]
 
-Map.add_character(Teo)
-Map.add_enemies(dragon1)
+Hall.add_enemies(dragon1)
+Hall.add_character(Teo)
+Lounge.add_character(Jaafar)
+Lounge.add_character(Rob)
 
 
 def text_objects(text, font):
@@ -50,11 +46,9 @@ def quit_game():
     global in_battle
     global Map
     in_battle = False
-    Map = level.Level("Maps/Hall.png", screen)
+    Map = Hall
     Map.add_character(Teo)
     Map.add_enemies(dragon1)
-
-
 
 
 def do_dmg():
@@ -62,21 +56,21 @@ def do_dmg():
     dmg_taken = False
 
 
-def button(msg,x,y,w,h,ic,ac,action=None):
+def button(msg, x, y, w, h, ic, ac, action=None):
     mouse = pygame.mouse.get_pos()
     click = pygame.mouse.get_pressed()
     # print(click)
-    if x+w > mouse[0] > x and y+h > mouse[1] > y:
-        pygame.draw.rect(screen, ac,(x,y,w,h))
+    if x + w > mouse[0] > x and y + h > mouse[1] > y:
+        pygame.draw.rect(screen, ac, (x, y, w, h))
 
         if click[0] == 1 and action is not None:
             action()
     else:
-        pygame.draw.rect(screen, ic,(x,y,w,h))
+        pygame.draw.rect(screen, ic, (x, y, w, h))
 
-    smallText = pygame.font.SysFont("comicsansms",20)
+    smallText = pygame.font.SysFont("comicsansms", 20)
     textSurf, textRect = text_objects(msg, smallText)
-    textRect.center = ( (x+(w/2)), (y+(h/2)) )
+    textRect.center = ((x + (w / 2)), (y + (h / 2)))
     screen.blit(textSurf, textRect)
 
 
@@ -112,8 +106,8 @@ while running:
 
     if len(dragons) == 0:
         in_battle = False
-        Map = level.Level("Maps/Hall.png", screen)
-        Map.add_character(Teo)
+        Map = Hall
+
 
     # Input Checks
     if not in_battle:
@@ -124,6 +118,17 @@ while running:
 
     # Logic
     Jadyn.get_frame()
+    if Map == Hall:
+        if Map.check_map_borders((0, 155), (42, 434), Jadyn):
+            Jadyn.player_pos = pygame.math.Vector2(500, 350)
+            print(Map.map_name)
+            Map = Lounge
+            print(Map.map_name)
+
+    if Map == Lounge:
+        if Map.check_map_borders((1132, 155), (1287, 434), Jadyn):
+            Map = Hall
+            Jadyn.player_pos = pygame.math.Vector2(45, 300)
 
     if in_battle:
         for dragon in dragons:
@@ -140,5 +145,3 @@ while running:
     Map.map_change_frame()
 
     clock.tick(frame_rate)
-
-

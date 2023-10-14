@@ -39,7 +39,7 @@ class EnemyStats:
     def get_rect(self):
         return pygame.Rect(self.enemy_position.x, self.enemy_position.y, 256, 256)
 
-    def get_shape(self, game_display):
+    def get_enemy_image(self, game_display):
         if self.hp <= 20:
             color = (255, 0, 0)
         elif self.hp <= 50:

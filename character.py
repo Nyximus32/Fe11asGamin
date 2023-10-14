@@ -100,3 +100,17 @@ class Teo(Character):
                          player_pos=player_pos, facing=facing, screen=screen, dt=dt,
                          stats=CharacterStats(name="Teo", hp=100, damage=20,
                                               role="fighter"))
+
+class Rob(Character):
+    def __init__(self, player_pos, facing, screen, dt):
+        super().__init__(idle_sheet="Rob/Rob_idle.png", walk_sheet="Rob/Rob_walk.png",
+                         player_pos=player_pos, facing=facing, screen=screen, dt=dt,
+                         stats=CharacterStats(name="Robert", hp=110, damage=15,
+                                              role="fighter"))
+
+class Jaafar(Character):
+    def __init__(self, player_pos, facing, screen, dt):
+        super().__init__(idle_sheet="Jaafar/Jaafar_idle.png", walk_sheet="Jaafar/Jaafar_walk.png",
+                         player_pos=player_pos, facing=facing, screen=screen, dt=dt,
+                         stats=CharacterStats(name="Jaafar", hp=80, damage=35,
+                                              role="Assassin"))
