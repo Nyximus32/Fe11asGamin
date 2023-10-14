@@ -1,5 +1,6 @@
 import pygame
 import sys
+import game
 
 # Initialisatie van Pygame
 pygame.init()
@@ -17,6 +18,7 @@ pygame.display.set_caption("Meat 'Em Up")
 # Laad een achtergrondafbeelding (optioneel)
 achtergrond = pygame.image.load("Imgs/jadyn.png")
 
+
 # Functie om tekst weer te geven
 def toon_tekst(tekst, x, y, lettergrootte, kleur, schaduw=True):
     lettertype = pygame.font.SysFont("ComicSans", 32)
@@ -29,6 +31,7 @@ def toon_tekst(tekst, x, y, lettergrootte, kleur, schaduw=True):
         schaduw_rect.center = (x + 4, y + 4)  # Voeg een schaduw toe
         scherm.blit(tekst_achtergrond, schaduw_rect)
     scherm.blit(tekstoppervlak, tekstrechthoek)
+
 
 # Set the new dimensions
 new_width = 1287
@@ -55,6 +58,8 @@ while lopend:
             if gebeurtenis.key == pygame.K_SPACE:
                 # Start het spel wanneer de spatiebalk wordt ingedrukt
                 lopend = False  # Verlaat de gameloop
+                pygame.mixer.music.stop()
+                game.main()
 
     # Teken de achtergrondafbeelding (optioneel)
     scherm.blit(resized_image, (0, 0))
